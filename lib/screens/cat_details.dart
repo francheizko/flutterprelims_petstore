@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_petstore/constants/cat_details_model.dart';
+
 import 'package:flutter_petstore/constants/constants.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CatDetailsScreen extends StatefulWidget {
-  const CatDetailsScreen({Key? key});
+  final CatDetails catDetails;
+
+  const CatDetailsScreen({super.key, required this.catDetails});
 
   @override
   State<CatDetailsScreen> createState() => _CatDetailsScreenState();
@@ -20,9 +24,9 @@ class _CatDetailsScreenState extends State<CatDetailsScreen> {
             Container(
               height: 430,
               width: MediaQuery.of(context).size.width,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/Cat7.jpg'),
+                  image: AssetImage(widget.catDetails.imagePath),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -33,7 +37,7 @@ class _CatDetailsScreenState extends State<CatDetailsScreen> {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 25),
               width: MediaQuery.of(context).size.width,
-              height: 380,
+              height: 420,
               child: SingleChildScrollView(
                 child: Column(
                   children: [
@@ -58,7 +62,7 @@ class _CatDetailsScreenState extends State<CatDetailsScreen> {
                           width: 10,
                         ),
                         Text(
-                          'About Sphinx',
+                          'About ${widget.catDetails.name}',
                           style: GoogleFonts.poppins(
                               fontSize: 20, fontWeight: FontWeight.bold),
                         )
@@ -85,7 +89,7 @@ class _CatDetailsScreenState extends State<CatDetailsScreen> {
                                 ),
                               ),
                               Text(
-                                '3.5 kg',
+                                widget.catDetails.weight,
                                 style: GoogleFonts.poppins(
                                     fontSize: 18,
                                     fontWeight: FontWeight.w600,
@@ -113,7 +117,7 @@ class _CatDetailsScreenState extends State<CatDetailsScreen> {
                                 ),
                               ),
                               Text(
-                                '22 cm',
+                                widget.catDetails.height,
                                 style: GoogleFonts.poppins(
                                     fontSize: 18,
                                     fontWeight: FontWeight.w600,
@@ -128,7 +132,7 @@ class _CatDetailsScreenState extends State<CatDetailsScreen> {
                         Container(
                           width: 120,
                           height: 85,
-                          padding: const EdgeInsets.all(15),
+                          padding: const EdgeInsets.all(10),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(18),
                               color: lgreen.withOpacity(0.10)),
@@ -141,7 +145,7 @@ class _CatDetailsScreenState extends State<CatDetailsScreen> {
                                 ),
                               ),
                               Text(
-                                'Dark pink',
+                                widget.catDetails.color,
                                 style: GoogleFonts.poppins(
                                     fontSize: 18,
                                     fontWeight: FontWeight.w600,
@@ -156,7 +160,7 @@ class _CatDetailsScreenState extends State<CatDetailsScreen> {
                       height: 12,
                     ),
                     Text(
-                      'The Sphinx cat, hairless and charming, boasts a velvety skin in various colors and patterns. Playful and affectionate, they capture hearts with their unique appearance and lively personalities.',
+                      widget.catDetails.description,
                       style: GoogleFonts.poppins(fontSize: 16, color: llgray),
                       textAlign: TextAlign.left,
                     ),
@@ -183,7 +187,7 @@ class _CatDetailsScreenState extends State<CatDetailsScreen> {
                               width: 15,
                             ),
                             Text(
-                              'Sphinx Behavior',
+                              '${widget.catDetails.name} Behavior',
                               style: GoogleFonts.poppins(
                                   fontSize: 20, fontWeight: FontWeight.bold),
                             )
@@ -203,7 +207,7 @@ class _CatDetailsScreenState extends State<CatDetailsScreen> {
                                   border: Border.all(color: lyellow, width: 1)),
                               child: Center(
                                 child: Text(
-                                  'Affectionate',
+                                  'Soft-hearted',
                                   style: GoogleFonts.poppins(
                                     fontSize: 16,
                                   ),
@@ -222,7 +226,7 @@ class _CatDetailsScreenState extends State<CatDetailsScreen> {
                                   border: Border.all(color: lyellow, width: 1)),
                               child: Center(
                                 child: Text(
-                                  'Intelligent',
+                                  'Smart',
                                   style: GoogleFonts.poppins(
                                     fontSize: 16,
                                   ),
@@ -258,36 +262,35 @@ class _CatDetailsScreenState extends State<CatDetailsScreen> {
                 ),
               ],
             ),
-            child: Row(
+            child: Stack(
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Sphinx Cat',
+                      widget.catDetails.name,
                       style: GoogleFonts.poppins(
                           fontSize: 27, fontWeight: FontWeight.bold),
                     ),
                     Row(
                       children: [
                         Text(
-                          'Canada',
+                          widget.catDetails.country,
                           style: GoogleFonts.poppins(
                               fontSize: 18, color: llightgray),
                         ),
-                        const SizedBox(
-                            width: 5), // Add some spacing between the texts
+                        const SizedBox(width: 5),
                         Container(
                           width: 2.5,
                           height: 2.5,
                           decoration: const BoxDecoration(
                             shape: BoxShape.circle,
-                            color: Colors.black, // Adjust color as needed
+                            color: Colors.black,
                           ),
                         ),
                         const SizedBox(width: 5),
                         Text(
-                          '8m',
+                          widget.catDetails.age,
                           style: GoogleFonts.poppins(
                               fontSize: 18, color: llightgray),
                         ),
@@ -295,25 +298,47 @@ class _CatDetailsScreenState extends State<CatDetailsScreen> {
                     ),
                   ],
                 ),
-                const SizedBox(
-                  width: 135,
-                ),
-                Container(
-                  height: 45,
-                  width: 45,
-                  decoration: BoxDecoration(
-                      image: const DecorationImage(
-                        image: AssetImage(
-                          'assets/Expand.png',
+                Positioned(
+                  left: 280,
+                  top: 5,
+                  child: Container(
+                    height: 45,
+                    width: 45,
+                    decoration: BoxDecoration(
+                        image: const DecorationImage(
+                          image: AssetImage(
+                            'assets/Expand.png',
+                          ),
                         ),
-                      ),
-                      borderRadius: BorderRadius.circular(9),
-                      color: lyellow),
+                        borderRadius: BorderRadius.circular(9),
+                        color: lyellow),
+                  ),
                 ),
               ],
             ),
           ),
-        )
+        ),
+        Positioned(
+          top: 80,
+          left: 30,
+          child: GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: Transform.scale(
+              scale: 1.5,
+              child: Container(
+                height: 28,
+                width: 28,
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/icons8-back-100.png'),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
       ]),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_petstore/constants/cat_details_model.dart';
 import 'cat_model.dart';
 
 class CatProvider extends ChangeNotifier {
@@ -62,6 +63,17 @@ class CatProvider extends ChangeNotifier {
   final List<Cat> _cartItems = [];
 
   List<Cat> get cartItems => _cartItems;
+  CatDetails getSelectedCatDetails() {
+    return CatDetails(
+        name: _cats.isNotEmpty ? _cats[0].name : 'Default Cat',
+        country: 'Unknown',
+        age: 'Unknown',
+        imagePath: '',
+        weight: 'Unknown',
+        height: 'Unkown',
+        color: 'Unkown',
+        description: 'Unkown');
+  }
 
   void filterCats(String searchText) {
     _searchText = searchText.toLowerCase();

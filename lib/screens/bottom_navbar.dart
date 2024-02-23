@@ -73,11 +73,11 @@ class _BottomNavBarState extends State<BottomNavBar> {
             alignment: Alignment.center,
             child: widget.selectedindex == 3
                 ? Image.asset(
-                    'assets/Store_Selected.png',
+                    'assets/Profile_Selected.png',
                     width: 34,
                   )
                 : Image.asset(
-                    'assets/Store_Unselected.png',
+                    'assets/Profile_Unselected.png',
                     width: 34,
                   ),
           ),

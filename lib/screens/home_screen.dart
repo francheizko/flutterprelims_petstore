@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_petstore/constants/cat_details_model.dart';
 import 'package:flutter_petstore/constants/constants.dart';
+import 'package:flutter_petstore/screens/cat_details.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_petstore/constants/cat_model.dart';
 import 'package:flutter_petstore/constants/cat_provider.dart';
@@ -130,74 +132,92 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget buildItemContainer(Cat cat, BuildContext context) {
+    // Assuming you have a CatDataProvider instance
+    CatDataProvider catDataProvider = CatDataProvider();
+
     return Expanded(
-      child: Container(
-        padding: const EdgeInsets.all(12),
-        height: 183,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-          color: Colors.white70,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.blueGrey.withOpacity(0.17),
-              offset: const Offset(0.0, 3.0),
-              blurRadius: 24.0,
-              spreadRadius: 0.0,
-            )
-          ],
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Stack(
-              children: [
-                Container(
-                  width: double.infinity,
-                  height: 111,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16),
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: AssetImage(cat.imagePath),
+      child: GestureDetector(
+        onTap: () {
+          // Fetch detailed information about the tapped cat
+          CatDetails catDetails = catDataProvider.getCatDetails(cat.name);
+
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => CatDetailsScreen(catDetails: catDetails),
+            ),
+          );
+        },
+        child: Container(
+          padding: const EdgeInsets.all(12),
+          height: 183,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16),
+            color: Colors.white70,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.blueGrey.withOpacity(0.17),
+                offset: const Offset(0.0, 3.0),
+                blurRadius: 24.0,
+                spreadRadius: 0.0,
+              ),
+            ],
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Stack(
+                children: [
+                  Container(
+                    width: double.infinity,
+                    height: 111,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: AssetImage(cat.imagePath),
+                      ),
                     ),
                   ),
+                ],
+              ),
+              const SizedBox(height: 5),
+              Text(
+                cat.name,
+                style: GoogleFonts.poppins(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
                 ),
-              ],
-            ),
-            const SizedBox(height: 5),
-            Text(
-              cat.name,
-              style: GoogleFonts.poppins(
-                  fontSize: 16, fontWeight: FontWeight.w500),
-            ),
-            Row(
-              children: [
-                Text(
-                  '\$${cat.price}',
-                  style: GoogleFonts.poppins(fontSize: 14, color: lyellow),
-                ),
-                const SizedBox(width: 108),
-                GestureDetector(
-                  onTap: () {
-                    Provider.of<CatProvider>(context, listen: false)
-                        .addToCart(cat);
-                  },
-                  child: Transform.scale(
-                    scale: 1.5,
-                    child: Container(
-                      height: 12,
-                      width: 12,
-                      decoration: const BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('assets/shopping-cart.png'),
+              ),
+              Row(
+                children: [
+                  Text(
+                    '\$${cat.price}',
+                    style: GoogleFonts.poppins(fontSize: 14, color: lyellow),
+                  ),
+                  const SizedBox(width: 108),
+                  GestureDetector(
+                    onTap: () {
+                      Provider.of<CatProvider>(context, listen: false)
+                          .addToCart(cat);
+                    },
+                    child: Transform.scale(
+                      scale: 1.5,
+                      child: Container(
+                        height: 12,
+                        width: 12,
+                        decoration: const BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage('assets/shopping-cart.png'),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
