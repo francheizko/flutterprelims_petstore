@@ -73,7 +73,6 @@ class HomeScreen extends StatelessWidget {
                     );
                   }
 
-                  // Display the entire list if search text is empty
                   if (catProvider.searchText.isEmpty) {
                     return Column(
                       children: List.generate(
