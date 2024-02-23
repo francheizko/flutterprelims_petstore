@@ -85,11 +85,12 @@ class HomeScreen extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(horizontal: 22),
                             child: Row(
                               children: [
-                                buildItemContainer(catProvider.cats[index]),
+                                buildItemContainer(
+                                    catProvider.cats[index], context),
                                 const SizedBox(width: 24),
                                 if (index + 1 < catProvider.cats.length)
                                   buildItemContainer(
-                                      catProvider.cats[index + 1]),
+                                      catProvider.cats[index + 1], context),
                               ],
                             ),
                           );
@@ -108,10 +109,11 @@ class HomeScreen extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(horizontal: 22),
                           child: Row(
                             children: [
-                              buildItemContainer(filteredCats[index]),
+                              buildItemContainer(filteredCats[index], context),
                               const SizedBox(width: 24),
                               if (index + 1 < filteredCats.length)
-                                buildItemContainer(filteredCats[index + 1]),
+                                buildItemContainer(
+                                    filteredCats[index + 1], context),
                             ],
                           ),
                         );
@@ -127,7 +129,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget buildItemContainer(Cat cat) {
+  Widget buildItemContainer(Cat cat, BuildContext context) {
     return Expanded(
       child: Container(
         padding: const EdgeInsets.all(12),
@@ -175,14 +177,20 @@ class HomeScreen extends StatelessWidget {
                   style: GoogleFonts.poppins(fontSize: 14, color: lyellow),
                 ),
                 const SizedBox(width: 108),
-                Transform.scale(
-                  scale: 1.5,
-                  child: Container(
-                    height: 12,
-                    width: 12,
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('assets/shopping-cart.png'),
+                GestureDetector(
+                  onTap: () {
+                    Provider.of<CatProvider>(context, listen: false)
+                        .addToCart(cat);
+                  },
+                  child: Transform.scale(
+                    scale: 1.5,
+                    child: Container(
+                      height: 12,
+                      width: 12,
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('assets/shopping-cart.png'),
+                        ),
                       ),
                     ),
                   ),

@@ -9,6 +9,18 @@ final List<String> imageList = [
   'assets/Slider_image3.jpg'
 ];
 
+final List<String> titles = [
+  'Your One-Stop Pet Shop Experience!',
+  'Discover a World of Pet Care',
+  'Tailored Services for Your Furry Friends',
+];
+
+final List<String> descriptions = [
+  'Connect with 5-star pet caregivers near you who offer boarding, walking, house sitting or day care.',
+  'Explore a variety of pet care services to ensure your pets receive the best attention.',
+  'From walks to grooming, discover personalized care options for your furry companions.',
+];
+
 class FullScreenSlider extends StatefulWidget {
   const FullScreenSlider({super.key});
 
@@ -17,7 +29,7 @@ class FullScreenSlider extends StatefulWidget {
 }
 
 class _FullScreenSliderState extends State<FullScreenSlider> {
-  int _current = 1;
+  int _current = 0;
   final CarouselController _controller = CarouselController();
 
   @override
@@ -65,7 +77,7 @@ class _FullScreenSliderState extends State<FullScreenSlider> {
                     height: 70,
                   ),
                   Text(
-                    'Your One-Stop Pet Shop Experience!',
+                    titles[_current],
                     style: GoogleFonts.poppins(
                       fontSize: 28,
                       fontWeight: FontWeight.bold,
@@ -78,7 +90,7 @@ class _FullScreenSliderState extends State<FullScreenSlider> {
                     height: 20,
                   ),
                   Text(
-                    'Connect with 5-star pet caregivers near you who offer boarding, walking, house sitting or day care.',
+                    descriptions[_current],
                     style:
                         GoogleFonts.poppins(fontSize: 18, color: Colors.grey),
                     textAlign: TextAlign.center,

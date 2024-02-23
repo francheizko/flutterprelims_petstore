@@ -26,7 +26,7 @@ class PrelimsApp extends StatefulWidget {
 
 class _PrelimsAppState extends State<PrelimsApp> {
   // Introducing a new state to track if onboarding has been completed.
-  bool _isOnboardingComplete = false;
+  bool isOnboardingComplete = false;
 
   int _selectedIndex = 0; // Default to the first tab (e.g., HomeScreen)
 
@@ -38,7 +38,7 @@ class _PrelimsAppState extends State<PrelimsApp> {
 
   @override
   Widget build(BuildContext context) {
-    Widget _currentScreen = _isOnboardingComplete
+    Widget currentScreen = isOnboardingComplete
         ? Scaffold(
             body: _buildBody(_selectedIndex),
             bottomNavigationBar: BottomNavBar(
@@ -48,12 +48,12 @@ class _PrelimsAppState extends State<PrelimsApp> {
           )
         : OnboardingScreen(onComplete: () {
             setState(() {
-              _isOnboardingComplete = true;
+              isOnboardingComplete = true;
             });
           });
 
     return MaterialApp(
-      home: _currentScreen,
+      home: currentScreen,
     );
   }
 

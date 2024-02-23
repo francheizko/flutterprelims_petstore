@@ -44,6 +44,7 @@ class CatProvider extends ChangeNotifier {
       price: 55,
     ),
   ];
+
   List<Cat> get cats => _cats;
 
   List<Cat> _filteredCats = [];
@@ -58,6 +59,10 @@ class CatProvider extends ChangeNotifier {
 
   String get searchText => _searchText;
 
+  final List<Cat> _cartItems = [];
+
+  List<Cat> get cartItems => _cartItems;
+
   void filterCats(String searchText) {
     _searchText = searchText.toLowerCase();
     _filteredCats = _cats
@@ -66,6 +71,16 @@ class CatProvider extends ChangeNotifier {
 
     _isSearching = _searchText.isNotEmpty;
 
+    notifyListeners();
+  }
+
+  void addToCart(Cat cat) {
+    _cartItems.add(cat);
+    notifyListeners();
+  }
+
+  void removeFromCart(Cat cat) {
+    _cartItems.remove(cat);
     notifyListeners();
   }
 }

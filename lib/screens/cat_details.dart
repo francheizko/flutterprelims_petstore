@@ -28,135 +28,213 @@ class _CatDetailsScreenState extends State<CatDetailsScreen> {
               ),
             ),
             const SizedBox(
-              height: 100,
+              height: 20,
             ),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 25),
               width: MediaQuery.of(context).size.width,
-              height: 300,
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Transform.scale(
-                        scale: 1.1,
-                        child: Container(
-                          height: 30,
-                          width: 30,
-                          decoration: const BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage('assets/pet.png'),
+              height: 380,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    const SizedBox(
+                      height: 80,
+                    ),
+                    Row(
+                      children: [
+                        Transform.scale(
+                          scale: 1.1,
+                          child: Container(
+                            height: 30,
+                            width: 30,
+                            decoration: const BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage('assets/pet.png'),
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        'About Sphinx',
-                        style: GoogleFonts.poppins(
-                            fontSize: 20, fontWeight: FontWeight.bold),
-                      )
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  Row(
-                    children: [
-                      Container(
-                        width: 120,
-                        height: 85,
-                        padding: const EdgeInsets.all(15),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(18),
-                            color: lgreen.withOpacity(0.10)),
-                        child: Column(
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          'About Sphinx',
+                          style: GoogleFonts.poppins(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                        )
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                          width: 120,
+                          height: 85,
+                          padding: const EdgeInsets.all(15),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(18),
+                              color: lgreen.withOpacity(0.10)),
+                          child: Column(
+                            children: [
+                              Text(
+                                'Weight',
+                                style: GoogleFonts.poppins(
+                                  fontSize: 16,
+                                ),
+                              ),
+                              Text(
+                                '3.5 kg',
+                                style: GoogleFonts.poppins(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w600,
+                                    color: lyellow),
+                              )
+                            ],
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 8,
+                        ),
+                        Container(
+                          width: 120,
+                          height: 85,
+                          padding: const EdgeInsets.all(15),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(18),
+                              color: lgreen.withOpacity(0.10)),
+                          child: Column(
+                            children: [
+                              Text(
+                                'Height',
+                                style: GoogleFonts.poppins(
+                                  fontSize: 16,
+                                ),
+                              ),
+                              Text(
+                                '22 cm',
+                                style: GoogleFonts.poppins(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w600,
+                                    color: lyellow),
+                              )
+                            ],
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 8,
+                        ),
+                        Container(
+                          width: 120,
+                          height: 85,
+                          padding: const EdgeInsets.all(15),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(18),
+                              color: lgreen.withOpacity(0.10)),
+                          child: Column(
+                            children: [
+                              Text(
+                                'Color',
+                                style: GoogleFonts.poppins(
+                                  fontSize: 16,
+                                ),
+                              ),
+                              Text(
+                                'Dark pink',
+                                style: GoogleFonts.poppins(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w600,
+                                    color: lyellow),
+                              )
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 12,
+                    ),
+                    Text(
+                      'The Sphinx cat, hairless and charming, boasts a velvety skin in various colors and patterns. Playful and affectionate, they capture hearts with their unique appearance and lively personalities.',
+                      style: GoogleFonts.poppins(fontSize: 16, color: llgray),
+                      textAlign: TextAlign.left,
+                    ),
+                    const SizedBox(
+                      height: 50,
+                    ),
+                    Column(
+                      children: [
+                        Row(
                           children: [
-                            Text(
-                              'Weight',
-                              style: GoogleFonts.poppins(
-                                fontSize: 16,
+                            Transform.scale(
+                              scale: 1.1,
+                              child: Container(
+                                height: 30,
+                                width: 30,
+                                decoration: const BoxDecoration(
+                                  image: DecorationImage(
+                                    image: AssetImage('assets/smileys.png'),
+                                  ),
+                                ),
                               ),
                             ),
+                            const SizedBox(
+                              width: 15,
+                            ),
                             Text(
-                              '3.5 kg',
+                              'Sphinx Behavior',
                               style: GoogleFonts.poppins(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w600,
-                                  color: lyellow),
+                                  fontSize: 20, fontWeight: FontWeight.bold),
                             )
                           ],
                         ),
-                      ),
-                      const SizedBox(
-                        width: 8,
-                      ),
-                      Container(
-                        width: 120,
-                        height: 85,
-                        padding: const EdgeInsets.all(15),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(18),
-                            color: lgreen.withOpacity(0.10)),
-                        child: Column(
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Row(
                           children: [
-                            Text(
-                              'Height',
-                              style: GoogleFonts.poppins(
-                                fontSize: 16,
+                            Container(
+                              width: 130,
+                              height: 38,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(22),
+                                  color: Colors.transparent,
+                                  border: Border.all(color: lyellow, width: 1)),
+                              child: Center(
+                                child: Text(
+                                  'Affectionate',
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 16,
+                                  ),
+                                ),
                               ),
                             ),
-                            Text(
-                              '22 cm',
-                              style: GoogleFonts.poppins(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w600,
-                                  color: lyellow),
-                            )
-                          ],
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 8,
-                      ),
-                      Container(
-                        width: 120,
-                        height: 85,
-                        padding: const EdgeInsets.all(15),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(18),
-                            color: lgreen.withOpacity(0.10)),
-                        child: Column(
-                          children: [
-                            Text(
-                              'Color',
-                              style: GoogleFonts.poppins(
-                                fontSize: 16,
-                              ),
+                            const SizedBox(
+                              width: 10,
                             ),
-                            Text(
-                              'Dark pink',
-                              style: GoogleFonts.poppins(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w600,
-                                  color: lyellow),
+                            Container(
+                              width: 130,
+                              height: 38,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(22),
+                                  color: Colors.transparent,
+                                  border: Border.all(color: lyellow, width: 1)),
+                              child: Center(
+                                child: Text(
+                                  'Intelligent',
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              ),
                             )
                           ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  Text(
-                    'The Sphinx cat, hairless and charming, boasts a velvety skin in various colors and patterns. Playful and affectionate, they capture hearts with their unique appearance and lively personalities.',
-                    style: GoogleFonts.poppins(fontSize: 16, color: llgray),
-                    textAlign: TextAlign.left,
-                  )
-                ],
+                        )
+                      ],
+                    )
+                  ],
+                ),
               ),
             )
           ],
