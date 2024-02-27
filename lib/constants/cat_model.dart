@@ -1,14 +1,24 @@
 class Cat {
   final String imagePath;
   final String name;
-
   final int price;
+  int quantity;
 
   Cat({
     required this.imagePath,
     required this.name,
     required this.price,
+    this.quantity = 1,
   });
+
+  Cat copyWith({int? quantity}) {
+    return Cat(
+      imagePath: imagePath,
+      name: name,
+      price: price,
+      quantity: quantity ?? this.quantity,
+    );
+  }
 }
 
 final List<Cat> cats = [

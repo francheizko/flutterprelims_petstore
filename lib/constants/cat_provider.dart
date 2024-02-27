@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_petstore/constants/cat_details_model.dart';
 import 'cat_model.dart';
 
 class CatProvider extends ChangeNotifier {
@@ -63,17 +62,6 @@ class CatProvider extends ChangeNotifier {
   final List<Cat> _cartItems = [];
 
   List<Cat> get cartItems => _cartItems;
-  CatDetails getSelectedCatDetails() {
-    return CatDetails(
-        name: _cats.isNotEmpty ? _cats[0].name : 'Default Cat',
-        country: 'Unknown',
-        age: 'Unknown',
-        imagePath: '',
-        weight: 'Unknown',
-        height: 'Unkown',
-        color: 'Unkown',
-        description: 'Unkown');
-  }
 
   void filterCats(String searchText) {
     _searchText = searchText.toLowerCase();
@@ -87,12 +75,56 @@ class CatProvider extends ChangeNotifier {
   }
 
   void addToCart(Cat cat) {
-    _cartItems.add(cat);
+    bool isAlreadyInCart = _cartItems.any((item) => item.name == cat.name);
+
+    if (isAlreadyInCart) {
+      for (Cat cartItem in _cartItems) {
+        if (cartItem.name == cat.name) {
+          cartItem.quantity += 1;
+          break;
+        }
+      }
+    } else {
+      _cartItems.add(Cat(
+        imagePath: cat.imagePath,
+        name: cat.name,
+        price: cat.price,
+        quantity: 1,
+      ));
+    }
+
     notifyListeners();
   }
 
-  void removeFromCart(Cat cat) {
-    _cartItems.remove(cat);
+  void addQuantityToCart(Cat cat) {
+    for (Cat cartItem in _cartItems) {
+      if (cartItem.name == cat.name) {
+        cartItem.quantity += 1;
+        break;
+      }
+    }
     notifyListeners();
+  }
+
+  void removeQuantityFromCart(Cat cat) {
+    for (Cat cartItem in _cartItems) {
+      if (cartItem.name == cat.name) {
+        if (cartItem.quantity > 1) {
+          cartItem.quantity -= 1;
+        } else {
+          _cartItems.remove(cat);
+        }
+        break;
+      }
+    }
+    notifyListeners();
+  }
+
+  double calculateTotalPrice() {
+    double totalPrice = 0.0;
+    for (Cat cat in _cartItems) {
+      totalPrice += (cat.price * cat.quantity);
+    }
+    return totalPrice;
   }
 }

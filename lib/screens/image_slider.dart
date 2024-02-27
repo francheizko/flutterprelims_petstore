@@ -105,7 +105,7 @@ class _FullScreenSliderState extends State<FullScreenSlider> {
           ),
         ),
         Positioned(
-          bottom: 400, // Adjust the position as needed
+          bottom: 400,
           left: 0,
           right: 0,
           child: Row(

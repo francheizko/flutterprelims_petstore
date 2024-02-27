@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_petstore/screens/home_screen.dart';
 import 'package:flutter_petstore/screens/image_slider.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -12,11 +11,9 @@ class OnboardingScreen extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          // FullScreenSlider
           const Positioned.fill(
             child: FullScreenSlider(),
           ),
-
           Positioned(
             bottom: 100,
             left: 22,

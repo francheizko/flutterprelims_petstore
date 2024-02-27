@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import 'package:flutter_petstore/constants/cat_details_model.dart';
+import 'package:flutter_petstore/constants/cat_model.dart';
+import 'package:flutter_petstore/constants/cat_provider.dart';
 
 import 'package:flutter_petstore/constants/constants.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class CatDetailsScreen extends StatefulWidget {
   final CatDetails catDetails;
+  final Cat cat;
 
-  const CatDetailsScreen({super.key, required this.catDetails});
-
+  const CatDetailsScreen({
+    Key? key,
+    required this.catDetails,
+    required this.cat,
+  }) : super(key: key);
   @override
   State<CatDetailsScreen> createState() => _CatDetailsScreenState();
 }
@@ -336,6 +344,55 @@ class _CatDetailsScreenState extends State<CatDetailsScreen> {
                   ),
                 ),
               ),
+            ),
+          ),
+        ),
+        Positioned(
+          top: 800,
+          left: 50,
+          child: GestureDetector(
+            onTap: () {
+              Provider.of<CatProvider>(context, listen: false)
+                  .addToCart(widget.cat);
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('Added to Cart: ${widget.cat.name}'),
+                  duration: const Duration(seconds: 2),
+                ),
+              );
+            },
+            child: Container(
+              width: 320,
+              height: 60,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(9),
+                color: const Color(0xFFE8BE13),
+              ),
+              child: Row(children: [
+                const SizedBox(
+                  width: 80,
+                ),
+                Text(
+                  'Add to Cart',
+                  style: GoogleFonts.poppins(
+                    fontSize: 20,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(
+                  width: 15,
+                ),
+                Container(
+                  height: 25,
+                  width: 25,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/icons8-cart-60.png'),
+                    ),
+                  ),
+                ),
+              ]),
             ),
           ),
         ),

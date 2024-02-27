@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:flutter_petstore/constants/constants.dart';
 
 class NearbyStoresScreen extends StatelessWidget {
@@ -10,7 +10,7 @@ class NearbyStoresScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: lwhite,
       body: Container(
-        height: 1000,
+        height: 850,
         width: MediaQuery.of(context).size.width,
         decoration: const BoxDecoration(
             image: DecorationImage(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_petstore/constants/cat_details_model.dart';
 import 'package:flutter_petstore/constants/constants.dart';
+import 'package:flutter_petstore/screens/cat_cart_screen.dart';
 import 'package:flutter_petstore/screens/cat_details.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_petstore/constants/cat_model.dart';
@@ -132,19 +133,19 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget buildItemContainer(Cat cat, BuildContext context) {
-    // Assuming you have a CatDataProvider instance
     CatDataProvider catDataProvider = CatDataProvider();
 
     return Expanded(
       child: GestureDetector(
         onTap: () {
-          // Fetch detailed information about the tapped cat
           CatDetails catDetails = catDataProvider.getCatDetails(cat.name);
-
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => CatDetailsScreen(catDetails: catDetails),
+              builder: (context) => CatDetailsScreen(
+                catDetails: catDetails,
+                cat: cat,
+              ),
             ),
           );
         },
@@ -200,9 +201,16 @@ class HomeScreen extends StatelessWidget {
                     onTap: () {
                       Provider.of<CatProvider>(context, listen: false)
                           .addToCart(cat);
+
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('Added to Cart: ${cat.name}'),
+                          duration: const Duration(seconds: 2),
+                        ),
+                      );
                     },
                     child: Transform.scale(
-                      scale: 1.5,
+                      scale: 1.8,
                       child: Container(
                         height: 12,
                         width: 12,

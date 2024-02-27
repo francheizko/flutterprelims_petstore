@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_petstore/constants/cat_details_model.dart';
 import 'package:flutter_petstore/screens/bottom_navbar.dart';
 import 'package:flutter_petstore/screens/cat_cart_screen.dart';
-import 'package:flutter_petstore/screens/cat_details.dart';
 import 'package:flutter_petstore/screens/home_screen.dart';
 import 'package:flutter_petstore/screens/nearby_stores.dart';
 import 'package:flutter_petstore/screens/onboarding_screen.dart';
@@ -20,21 +18,20 @@ void main() {
 }
 
 class PrelimsApp extends StatefulWidget {
-  const PrelimsApp({Key? key}) : super(key: key);
+  const PrelimsApp({super.key});
 
   @override
-  State<PrelimsApp> createState() => _PrelimsAppState();
+  State<PrelimsApp> createState() => PrelimsAppState();
 }
 
-class _PrelimsAppState extends State<PrelimsApp> {
-  // Introducing a new state to track if onboarding has been completed.
+class PrelimsAppState extends State<PrelimsApp> {
   bool isOnboardingComplete = false;
 
-  int _selectedIndex = 0; // Default to the first tab (e.g., HomeScreen)
+  int selectedIndex = 0;
 
-  void _onItemTapped(int index) {
+  void onItemTapped(int index) {
     setState(() {
-      _selectedIndex = index;
+      selectedIndex = index;
     });
   }
 
@@ -42,10 +39,10 @@ class _PrelimsAppState extends State<PrelimsApp> {
   Widget build(BuildContext context) {
     Widget currentScreen = isOnboardingComplete
         ? Scaffold(
-            body: _buildBody(_selectedIndex, context),
+            body: buildBody(selectedIndex, context),
             bottomNavigationBar: BottomNavBar(
-              selectedindex: _selectedIndex,
-              onItemTapped: _onItemTapped,
+              selectedindex: selectedIndex,
+              onItemTapped: onItemTapped,
             ),
           )
         : OnboardingScreen(onComplete: () {
@@ -59,14 +56,12 @@ class _PrelimsAppState extends State<PrelimsApp> {
     );
   }
 
-  Widget _buildBody(int selectedIndex, BuildContext context) {
-    // final catProvider = Provider.of<CatProvider>(context);
-
+  Widget buildBody(int selectedIndex, BuildContext context) {
     switch (selectedIndex) {
       case 0:
-        return const HomeScreen();
-      case 1:
         return const NearbyStoresScreen();
+      case 1:
+        return const HomeScreen();
       case 2:
         return const CatCartScreen();
       case 3:
